@@ -1,3 +1,10 @@
+#REHASHER
+
+1 bob = 100 reBOB
+100 reBOB = 1 bob
+
+
+
 # Vite + React + Motoko
 
 ### Get started directly in your browser:
