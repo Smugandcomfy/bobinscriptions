@@ -15,8 +15,8 @@ import { idlFactory as reBobFactory} from './declarations/backend';
 import { _SERVICE as reBobService} from './declarations/backend/index.d';
 import {  Stats } from './declarations/backend/backend.did.d';
 
-const bobLedgerID = "7pail-xaaaa-aaaas-aabmq-cai";
-const reBobCanisterID = "bd3sg-teaaa-aaaaa-qaaba-cai";
+const bobLedgerID = "7pail-xaaaa-aaaas-aabmq-cai";//"bd3sg-teaaa-aaaaa-qaaba-cai";
+const reBobCanisterID = "qvwlv-uyaaa-aaaas-aidpq-cai";//"bkyz2-fmaaa-aaaaa-qaaaq-cai";
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
