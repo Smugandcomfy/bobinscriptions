@@ -810,7 +810,7 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
       ignore icrc4();
   };
 
-q
+
   ignore Timer.setTimer<system>(#nanoseconds(0), func () : async() {
     let selfActor : actor {
       init : shared () -> async ();
