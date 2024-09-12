@@ -7,6 +7,9 @@ fakebob is for testnet only
 
 deploy to bob subnet. it will be slow cause many canisters in bob subnet it take a long time w degrade performance 
 
+You should be able to use dfx and the --targetsubnet or something like that when you create the canister. or you can create the canister from the nns, assign the intern as controller and close your eyes
+
+
 # Vite + React + Motoko
 
 ### Get started directly in your browser:
