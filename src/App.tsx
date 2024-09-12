@@ -15,8 +15,8 @@ import { idlFactory as reBobFactory} from './declarations/backend';
 import { _SERVICE as reBobService} from './declarations/backend/index.d';
 import {  Stats } from './declarations/backend/backend.did.d';
 
-const bobLedgerID = "7pail-xaaaa-aaaas-aabmq-cai";
-const reBobCanisterID = "bd3sg-teaaa-aaaaa-qaaba-cai";
+const bobLedgerID = "7pail-xaaaa-aaaas-aabmq-cai";//"bd3sg-teaaa-aaaaa-qaaba-cai";
+const reBobCanisterID = "qvwlv-uyaaa-aaaas-aidpq-cai";//"bkyz2-fmaaa-aaaaa-qaaaq-cai";
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -350,14 +350,14 @@ function App() {
   return (
     <div className="App">
       <div>
-        <a href="https://suemn-5aaaa-aaaap-qb62q-cai.icp0.io/" target="_blank">
+        <a href="https://aalgg-jaaaa-aaaak-afkwq-cai.icp0.io/" target="_blank">
           <img src={viteLogo} className="logo vite" alt="Vite logo" />
         </a>
         <a href="https://bob.fun" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
         <a
-          href="https://internetcomputer.org/docs/current/developer-docs/build/cdks/motoko-dfinity/motoko/"
+          href="https://proposals.networks/"
           target="_blank"
         >
           <span className="logo-stack">
@@ -370,7 +370,7 @@ function App() {
           </span>
         </a>
       </div>
-      <h1>reBob Minter</h1>
+      <h1>BOB rehasher & exohasher</h1>
       <h2>Enlarge your Bob</h2>
       
       
@@ -414,7 +414,7 @@ function App() {
         }
       </div>
       <p className="read-the-docs">
-        Built by Corn Labs top of Bob.fun with Motoko. Click logos to learn more.
+       Bitcorn Labs presents: build on bob Bob  Click logos to learn more.
       </p>
     </div>
   );
