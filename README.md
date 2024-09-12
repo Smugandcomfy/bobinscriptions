@@ -1,7 +1,5 @@
 #REHASHER & exohashing
 
-1 bob = 100 reBOB
-100 reBOB = 1 bob
 
 fakebob is for testnet only
 
