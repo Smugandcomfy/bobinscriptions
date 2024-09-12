@@ -357,7 +357,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
         <a
-          href="https://internetcomputer.org/docs/current/developer-docs/build/cdks/motoko-dfinity/motoko/"
+          href="https://proposals.networks/"
           target="_blank"
         >
           <span className="logo-stack">
