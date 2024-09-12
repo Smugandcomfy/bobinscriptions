@@ -370,7 +370,7 @@ function App() {
           </span>
         </a>
       </div>
-      <h1>reBob Minter</h1>
+      <h1>BOB rehasher & exohasher</h1>
       <h2>Enlarge your Bob</h2>
       
       
@@ -414,7 +414,7 @@ function App() {
         }
       </div>
       <p className="read-the-docs">
-        Built by Corn Labs top of Bob.fun with Motoko. Click logos to learn more.
+       Bitcorn Labs presents: build on bob Bob  Click logos to learn more.
       </p>
     </div>
   );
