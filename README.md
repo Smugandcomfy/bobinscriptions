@@ -3,7 +3,9 @@
 1 bob = 100 reBOB
 100 reBOB = 1 bob
 
+fakebob is for testnet only
 
+deploy to bob subnet. it will be slow cause many canisters in bob subnet it take a long time w degrade performance 
 
 # Vite + React + Motoko
 
