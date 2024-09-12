@@ -804,10 +804,10 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
       D.trap("Only the canister can initialize the canister");
     };
     log.add(debug_show(Time.now()) # "In init " );
-      ignore icrc1();
-      ignore icrc2();
-      ignore icrc3();
-      ignore icrc4();
+      ignore icrc1().metadata();
+      ignore icrc2().metadata();
+      ignore icrc3().stats();
+      ignore icrc4().metadata();
   };
 
 
