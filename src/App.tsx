@@ -350,7 +350,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <a href="https://suemn-5aaaa-aaaap-qb62q-cai.icp0.io/" target="_blank">
+        <a href="https://aalgg-jaaaa-aaaak-afkwq-cai.icp0.io/" target="_blank">
           <img src={viteLogo} className="logo vite" alt="Vite logo" />
         </a>
         <a href="https://bob.fun" target="_blank">
