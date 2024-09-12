@@ -17,6 +17,26 @@ then npm instal
 
 then npm start; it should build 
 
+then go into dfx.json and for the frontend and backend entries you'll need to add something like:
+
+"backend": {
+        "id": {
+          "ic": "rno2w-sqaaa-aaaaa-aaacq-cai",
+        }
+      },
+
+But backend will be your rebob canister and frontend will be your front end
+
+then dfx deploy --network ic backend
+then dfx deploy --network ic frontend
+
+it should build,
+
+You may need to update the compute allocation of the rebob canister to 1
+
+dfx canister --network ic update-settings backend --compute-allocation 1
+
+This will ensure you get scheduled to run at least every 100 rounds
 
 --
 
