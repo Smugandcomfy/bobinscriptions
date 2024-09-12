@@ -810,7 +810,7 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
       ignore icrc4();
   };
 
-
+q
   ignore Timer.setTimer<system>(#nanoseconds(0), func () : async() {
     let selfActor : actor {
       init : shared () -> async ();
@@ -819,6 +819,9 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
   });
 
   system func postupgrade() {
+    
+ignore icrc1().init_metadata();
+    };
     //re wire up the listener after upgrade
     //uncomment the following line to register the transfer_listener
       //icrc1().register_token_transferred_listener("bobminter", transfer_listener);
