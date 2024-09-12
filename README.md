@@ -10,7 +10,15 @@ fakebob is for testnet only
 
 dfx canister --network ic create --subnet bkfrj-6k62g-dycql-7h53p-atvkj-zg4to-gaogh-netha-ptybj-ntsgw-rqe
 
-furst put cycles in ledger princple 
+they you should just need to replace the const reBobCanisterID = "bd3sg-teaaa-aaaaa-qaaba-cai"; line in App.tsx with the reBob canister id.
+(furst put cycles in ledger princple)
+
+then npm instal
+
+then npm start; it should build 
+
+
+--
 
 1 canister for frontend which is assigned
 
