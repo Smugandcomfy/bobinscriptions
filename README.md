@@ -40,9 +40,21 @@ This will ensure you get scheduled to run at least every 100 rounds
 
 --
 
-1 canister for frontend which is assigned
+notes:
 
-You should be able to use dfx and the --targetsubnet or something like that when you create the canister. or you can create the canister from the nns, assign the intern as controller and close your eyes
+dfx,json may require reformatting to canister_ids.json
+
+{
+  "backend": {
+    "ic": "xxx"
+  },
+  "frontend": {
+    "ic": "xxx"
+  },
+  "rebob": {
+    "ic": "xxx"
+  }
+}
 
 
 # Vite + React + Motoko
