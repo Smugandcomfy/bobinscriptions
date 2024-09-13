@@ -142,7 +142,7 @@ function App() {
   };
 
   const fetchBalances = async () => {
-    // Assuming icdvFactory and icpFactory are your actor factories
+    // 
     // You'd need to replace this with actual logic to instantiate your actors and fetch balances
     // This is a placeholder for actor creation and balance fetching
 
@@ -233,7 +233,7 @@ function App() {
     }
 
     
-    const amountToMint = prompt("Enter the amount of Bob to use to mint reBob:");
+    const amountToMint = prompt("Enter the amount of Bob to use to hash reBob:");
     const amountInE8s = BigInt(Number(amountToMint) * 100000000);
 
     if (amountInE8s + 20000n > bobLedgerBalance) {
@@ -254,7 +254,7 @@ function App() {
           subaccount: [],
         },
         memo: [],
-        fee: [10000n],
+        fee: [1000000n],
         created_at_time: [BigInt(Date.now()) * 1000000n],
         expires_at: [],
         expected_allowance: [],
@@ -370,7 +370,7 @@ function App() {
           </span>
         </a>
       </div>
-      <h1>BOB rehasher & exohasher</h1>
+      <h1>BOB reHASH dapp</h1>
       <h2>Enlarge your Bob</h2>
       
       
@@ -389,7 +389,7 @@ function App() {
             <div className="card">
             {bobLedgerBalance < 40000 ? (
               <div>
-                <p>You need more BOB to mint reBob. Send At least .0004 BOB to your principal. Your principal is {yourPrincipal}</p>
+                <p>You need more BOB to hash reBob. Send At least .0004 BOB to your principal. Your principal is {yourPrincipal}</p>
               </div>
             ) : (
               <div>
