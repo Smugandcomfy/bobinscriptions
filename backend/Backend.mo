@@ -425,7 +425,7 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
     try{
       let result = await BOBLedger.icrc1_transfer({
         from_subaccount = null;
-        fee = ?10_000;
+        fee = null;
         to = {
           owner = caller;
           subaccount = subaccount;
