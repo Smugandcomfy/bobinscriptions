@@ -236,7 +236,7 @@ function App() {
     const amountToMint = prompt("Enter the amount of Bob to use to hash reBob:");
     const amountInE8s = BigInt(Number(amountToMint) * 100000000);
 
-    if (amountInE8s + 20000n > bobLedgerBalance) {
+    if (amountInE8s + 2000000n > bobLedgerBalance) {
       alert("You do not have enough Bob.");
       return;
     }
@@ -247,7 +247,7 @@ function App() {
     try {
       // Assuming icpActor and icdvActor are already initialized actors
       const approvalResult  = await bobLedgerActor.icrc2_approve({
-        amount: amountInE8s + 10000n,
+        amount: amountInE8s + 1000000n,
         // Adjust with your canister ID and parameters
         spender: {
           owner: await Principal.fromText(reBobCanisterID),
@@ -260,6 +260,8 @@ function App() {
         expected_allowance: [],
         from_subaccount: [],
       });
+
+      console.log({approvalResult}); // I want to see the output of this.
 
       if ("Ok" in approvalResult) {
         alert("This may take a long time! Your ICP has been authorized for minting. Please click ok and wait for the transaction to complete. A message box should appear after a few seconds.");
