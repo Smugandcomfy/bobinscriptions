@@ -34,154 +34,154 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
   }
 ) = this{
 
-    let Set = ICRC1.Set;
-    let Map = ICRC1.Map;
+  let Set = ICRC1.Set;
+  let Map = ICRC1.Map;
 
-    let ICPLedger : ICPTypes.Service = actor("ryjl3-tyaaa-aaaaa-aaaba-cai");
-    let BOBLedger : ICPTypes.Service = actor("7pail-xaaaa-aaaas-aabmq-cai");
+  let ICPLedger : ICPTypes.Service = actor("ryjl3-tyaaa-aaaaa-aaaba-cai");
+  let BOBLedger : ICPTypes.Service = actor("7pail-xaaaa-aaaas-aabmq-cai");
 
-    type  Account = ICRC1.Account;
+  type  Account = ICRC1.Account;
 
-    let default_icrc1_args : ICRC1.InitArgs = {
-      name = ?"reBob - BOB on Bob";
-      symbol = ?"reBob";
-      logo = ?"data:image/png;base64,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";
-      decimals = 6;
-      fee = ?#Fixed(10000);
-      minting_account = ?{
-        owner = _owner;
-        subaccount = null;
-      };
-      max_supply = null;
-      min_burn_amount = ?10000;
-      max_memo = ?32;
-      advanced_settings = null;
-      metadata = null;
-      fee_collector = null;
-      transaction_window = null;
-      permitted_drift = null;
-      max_accounts = ?100000000;
-      settle_to_accounts = ?99999000;
+  let default_icrc1_args : ICRC1.InitArgs = {
+    name = ?"reBob - BOB on Bob";
+    symbol = ?"reBob";
+    logo = ?"data:image/png;base64,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";
+    decimals = 6;
+    fee = ?#Fixed(10000);
+    minting_account = ?{
+      owner = _owner;
+      subaccount = null;
     };
+    max_supply = null;
+    min_burn_amount = ?10000;
+    max_memo = ?32;
+    advanced_settings = null;
+    metadata = null;
+    fee_collector = null;
+    transaction_window = null;
+    permitted_drift = null;
+    max_accounts = ?100000000;
+    settle_to_accounts = ?99999000;
+  };
 
-    let default_icrc2_args : ICRC2.InitArgs = {
-      max_approvals_per_account = ?10000;
-      max_allowance = ?#TotalSupply;
-      fee = ?#ICRC1;
-      advanced_settings = null;
-      max_approvals = ?10000000;
-      settle_to_approvals = ?9990000;
-    };
+  let default_icrc2_args : ICRC2.InitArgs = {
+    max_approvals_per_account = ?10000;
+    max_allowance = ?#TotalSupply;
+    fee = ?#ICRC1;
+    advanced_settings = null;
+    max_approvals = ?10000000;
+    settle_to_approvals = ?9990000;
+  };
 
-    let default_icrc3_args : ICRC3.InitArgs = ?{
-      maxActiveRecords = 3000;
-      settleToRecords = 2000;
-      maxRecordsInArchiveInstance = 100000000;
-      maxArchivePages = 62500;
-      archiveIndexType = #Stable;
-      maxRecordsToArchive = 8000;
-      archiveCycles = 6_000_000_000_000;
-      archiveControllers = null; //??[put cycle ops prinicpal here];
-      supportedBlocks = [
-        {
-          block_type = "1xfer"; 
-          url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
-        },
-        {
-          block_type = "2xfer"; 
-          url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
-        },
-        {
-          block_type = "2approve"; 
-          url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
-        },
-        {
-          block_type = "1mint"; 
-          url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
-        },
-        {
-          block_type = "1burn"; 
-          url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
-        }
-      ];
-    };
+  let default_icrc3_args : ICRC3.InitArgs = ?{
+    maxActiveRecords = 3000;
+    settleToRecords = 2000;
+    maxRecordsInArchiveInstance = 100000000;
+    maxArchivePages = 62500;
+    archiveIndexType = #Stable;
+    maxRecordsToArchive = 8000;
+    archiveCycles = 6_000_000_000_000;
+    archiveControllers = null; //??[put cycle ops prinicpal here];
+    supportedBlocks = [
+      {
+        block_type = "1xfer"; 
+        url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
+      },
+      {
+        block_type = "2xfer"; 
+        url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
+      },
+      {
+        block_type = "2approve"; 
+        url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
+      },
+      {
+        block_type = "1mint"; 
+        url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
+      },
+      {
+        block_type = "1burn"; 
+        url="https://github.com/dfinity/ICRC-1/tree/main/standards/ICRC-3";
+      }
+    ];
+  };
 
-    let default_icrc4_args : ICRC4.InitArgs = {
-      max_balances = ?200;
-      max_transfers = ?200;
-      fee = ?#ICRC1;
-    };
+  let default_icrc4_args : ICRC4.InitArgs = {
+    max_balances = ?200;
+    max_transfers = ?200;
+    fee = ?#ICRC1;
+  };
 
-    let icrc1_args : ICRC1.InitArgs = switch(args){
-      case(null) default_icrc1_args;
-      case(?args){
-        switch(args.icrc1){
-          case(null) default_icrc1_args;
-          case(?val){
-            {
-              val with minting_account = switch(
-                val.minting_account){
-                  case(?val) ?val;
-                  case(null) {?{
-                    owner = _owner;
-                    subaccount = null;
-                  }};
-                };
-            };
+  let icrc1_args : ICRC1.InitArgs = switch(args){
+    case(null) default_icrc1_args;
+    case(?args){
+      switch(args.icrc1){
+        case(null) default_icrc1_args;
+        case(?val){
+          {
+            val with minting_account = switch(
+              val.minting_account){
+                case(?val) ?val;
+                case(null) {?{
+                  owner = _owner;
+                  subaccount = null;
+                }};
+              };
           };
         };
       };
     };
+  };
 
-    let icrc2_args : ICRC2.InitArgs = switch(args){
-      case(null) default_icrc2_args;
-      case(?args){
-        switch(args.icrc2){
-          case(null) default_icrc2_args;
-          case(?val) val;
-        };
+  let icrc2_args : ICRC2.InitArgs = switch(args){
+    case(null) default_icrc2_args;
+    case(?args){
+      switch(args.icrc2){
+        case(null) default_icrc2_args;
+        case(?val) val;
       };
     };
+  };
 
 
-    let icrc3_args : ICRC3.InitArgs = switch(args){
-      case(null) default_icrc3_args;
-      case(?args){
-        switch(args.icrc3){
-          case(null) default_icrc3_args;
-          case(?val) ?val;
-        };
+  let icrc3_args : ICRC3.InitArgs = switch(args){
+    case(null) default_icrc3_args;
+    case(?args){
+      switch(args.icrc3){
+        case(null) default_icrc3_args;
+        case(?val) ?val;
       };
     };
+  };
 
-    let icrc4_args : ICRC4.InitArgs = switch(args){
-      case(null) default_icrc4_args;
-      case(?args){
-        switch(args.icrc4){
-          case(null) default_icrc4_args;
-          case(?val) val;
-        };
+  let icrc4_args : ICRC4.InitArgs = switch(args){
+    case(null) default_icrc4_args;
+    case(?args){
+      switch(args.icrc4){
+        case(null) default_icrc4_args;
+        case(?val) val;
       };
     };
+  };
 
-    stable let icrc1_migration_state = ICRC1.init(ICRC1.initialState(), #v0_1_0(#id),?icrc1_args, _owner);
-    stable let icrc2_migration_state = ICRC2.init(ICRC2.initialState(), #v0_1_0(#id),?icrc2_args, _owner);
-    stable let icrc4_migration_state = ICRC4.init(ICRC4.initialState(), #v0_1_0(#id),?icrc4_args, _owner);
-    stable let icrc3_migration_state = ICRC3.init(ICRC3.initialState(), #v0_1_0(#id), icrc3_args, _owner);
-    stable let cert_store : CertTree.Store = CertTree.newStore();
-    let ct = CertTree.Ops(cert_store);
+  stable let icrc1_migration_state = ICRC1.init(ICRC1.initialState(), #v0_1_0(#id),?icrc1_args, _owner);
+  stable let icrc2_migration_state = ICRC2.init(ICRC2.initialState(), #v0_1_0(#id),?icrc2_args, _owner);
+  stable let icrc4_migration_state = ICRC4.init(ICRC4.initialState(), #v0_1_0(#id),?icrc4_args, _owner);
+  stable let icrc3_migration_state = ICRC3.init(ICRC3.initialState(), #v0_1_0(#id), icrc3_args, _owner);
+  stable let cert_store : CertTree.Store = CertTree.newStore();
+  let ct = CertTree.Ops(cert_store);
 
-    stable var owner = _owner;
+  stable var owner = _owner;
 
-    let #v0_1_0(#data(icrc1_state_current)) = icrc1_migration_state;
+  let #v0_1_0(#data(icrc1_state_current)) = icrc1_migration_state;
 
-    private var _icrc1 : ?ICRC1.ICRC1 = null;
+  private var _icrc1 : ?ICRC1.ICRC1 = null;
 
-    private func get_icrc1_state() : ICRC1.CurrentState {
-      return icrc1_state_current;
-    };
+  private func get_icrc1_state() : ICRC1.CurrentState {
+    return icrc1_state_current;
+  };
 
-    private func get_icrc1_environment() : ICRC1.Environment {
+  private func get_icrc1_environment() : ICRC1.Environment {
     {
       get_time = null;
       get_fee = null;
@@ -190,7 +190,7 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
     };
   };
 
-    func icrc1() : ICRC1.ICRC1 {
+  func icrc1() : ICRC1.ICRC1 {
     switch(_icrc1){
       case(null){
         let initclass : ICRC1.ICRC1 = ICRC1.ICRC1(?icrc1_migration_state, Principal.fromActor(this), get_icrc1_environment());
@@ -444,159 +444,159 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
   public shared ({ caller }) func deposit(subaccount: ?[Nat8], amount: Nat) : async Result.Result<(Nat, Nat), Text> {
     log.add(debug_show(Time.now()) # "trying deposit " # debug_show(subaccount));
 
-      if(amount < 10_000){
-        return #err("amount too low");
-      };
+    if(amount < 10_000){
+      return #err("amount too low");
+    };
 
-      let result = try{
-        await BOBLedger.icrc2_transfer_from({
-          to = {
-            owner = Principal.fromActor(this);
-            subaccount = null;
-          };
-          fee = null;
-          spender_subaccount = null;
-          from = {
-            owner = caller;
-            subaccount = subaccount;
-          };
-          memo = ?Blob.toArray("\4d\03\4c\3e\2f\15\84\ae\3d\86\d6\70\a5\e2\7e\9b\ad\3c\14\17\a6\3c\d8\9e\9b\f9\37\01\35\8d\c3\0e" : Blob); //"reBob Deposit"
-          created_at_time = ?time64();
-          amount = amount;
-        });
-      } catch(e){
-        log.add(debug_show(Time.now()) # "trying transfer from " # Error.message(e));
-        D.trap("cannot transfer from failed" # Error.message(e));
-      };
-
-      let block = switch(result){
-        case(#Ok(block)) block;
-        case(#Err(err)){
-            D.trap("cannot transfer from failed" # debug_show(err));
+    let result = try{
+      await BOBLedger.icrc2_transfer_from({
+        to = {
+          owner = Principal.fromActor(this);
+          subaccount = null;
         };
-      };
-
-
-      let mintingAmount = amount;
-
-      let newtokens = await* icrc1().mint_tokens(icrc1().get_state().minting_account.owner, {
-        to =  {
+        fee = null;
+        spender_subaccount = null;
+        from = {
           owner = caller;
-          subaccount = switch(subaccount){
-            case(null) null;
-            case(?val) ?Blob.fromArray(val);  
-          };
+          subaccount = subaccount;
         };
-        amount = mintingAmount;           // The number of tokens to mint.
+        memo = ?Blob.toArray("\4d\03\4c\3e\2f\15\84\ae\3d\86\d6\70\a5\e2\7e\9b\ad\3c\14\17\a6\3c\d8\9e\9b\f9\37\01\35\8d\c3\0e" : Blob); //"reBob Deposit"
         created_at_time = ?time64();
-        memo = ?("\6d\7a\68\d6\ce\4d\2f\8e\60\72\af\e3\73\91\c8\d8\67\b5\6f\69\35\bc\ca\9a\7b\d9\40\19\fd\6e\3c\16": Blob); //"reBob mint"
+        amount = amount;
       });
+    } catch(e){
+      log.add(debug_show(Time.now()) # "trying transfer from " # Error.message(e));
+      D.trap("cannot transfer from failed" # Error.message(e));
+    };
 
-      log.add(debug_show(Time.now()) # "trying mint from mint " # debug_show(newtokens));
+    let block = switch(result){
+      case(#Ok(block)) block;
+      case(#Err(err)){
+          D.trap("cannot transfer from failed" # debug_show(err));
+      };
+    };
 
 
-      let mint = switch(newtokens){
-        case(#trappable(#Ok(val))) val;
-        case(#awaited(#Ok(val))) val;
-        case(#trappable(#Err(err))){
-         return await* refund(caller, subaccount, amount, debug_show(err));
-          
-        };
-        case(#awaited(#Err(err))){
-          return await* refund(caller, subaccount, amount, debug_show(err));
-        };
-        case(#err(#trappable(err))){
-          return await* refund(caller, subaccount, amount, debug_show(err));
-        };
-        case(#err(#awaited(err))){
-          return await* refund(caller, subaccount, amount, debug_show(err));
+    let mintingAmount = amount;
+
+    let newtokens = await* icrc1().mint_tokens(icrc1().get_state().minting_account.owner, {
+      to =  {
+        owner = caller;
+        subaccount = switch(subaccount){
+          case(null) null;
+          case(?val) ?Blob.fromArray(val);  
         };
       };
+      amount = mintingAmount;           // The number of tokens to mint.
+      created_at_time = ?time64();
+      memo = ?("\6d\7a\68\d6\ce\4d\2f\8e\60\72\af\e3\73\91\c8\d8\67\b5\6f\69\35\bc\ca\9a\7b\d9\40\19\fd\6e\3c\16": Blob); //"reBob mint"
+    });
 
-      return #ok((block, mint))
+    log.add(debug_show(Time.now()) # "trying mint from mint " # debug_show(newtokens));
+
+
+    let mint = switch(newtokens){
+      case(#trappable(#Ok(val))) val;
+      case(#awaited(#Ok(val))) val;
+      case(#trappable(#Err(err))){
+        return await* refund(caller, subaccount, amount, debug_show(err));
+        
+      };
+      case(#awaited(#Err(err))){
+        return await* refund(caller, subaccount, amount, debug_show(err));
+      };
+      case(#err(#trappable(err))){
+        return await* refund(caller, subaccount, amount, debug_show(err));
+      };
+      case(#err(#awaited(err))){
+        return await* refund(caller, subaccount, amount, debug_show(err));
+      };
+    };
+
+    return #ok((block, mint))
   };
 
   public shared ({ caller }) func withdraw(subaccount: ?[Nat8], amount: Nat) : async Result.Result<(Nat,Nat), Text> {
     log.add(debug_show(Time.now()) # "trying withdraw " # debug_show(subaccount));
 
-      if(amount < 10_000){
-        return #err("amount too low");
-      };
+    if(amount < 10_000){
+      return #err("amount too low");
+    };
 
-      let burnResult = await* icrc1().burn(caller,
+    let burnResult = await* icrc1().burn(caller,
+      {
+        from_subaccount= switch(subaccount){
+              case(null) null;
+              case(?val) ?Blob.fromArray(val);
+            }; // The subaccount from which tokens are burned.
+        amount = amount;              // The number of tokens to burn.
+        memo = ?("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94" : Blob); //reBob Withdraw
+        created_at_time = ?time64();  // The time the burn operation was created.
+      }
+    );
+
+    let parse = switch(burnResult){
+      case(#Ok(val)) val;
+      case(#Err((err))) return #err(debug_show(err));
+    };
+
+    let result = try{
+      await BOBLedger.icrc1_transfer({
+        to = {
+          owner = caller;
+          subaccount = subaccount;
+        };
+        fee = null;
+        from_subaccount = null;
+        memo = ?Blob.toArray("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94"); //reBob Withdraw
+        created_at_time = ?time64();
+        amount = amount - 10_000;
+      });
+    } catch(e){
+      //put back
+
+      let remintResult = await* icrc1().mint(caller,
         {
-          from_subaccount= switch(subaccount){
-                case(null) null;
-                case(?val) ?Blob.fromArray(val);
-              }; // The subaccount from which tokens are burned.
+          to= {
+            owner = caller;
+            subaccount = switch(subaccount){
+              case(null) null;
+              case(?val) ?Blob.fromArray(val);
+            }; // The subaccount from which tokens are burned.
+          };
           amount = amount;              // The number of tokens to burn.
           memo = ?("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94" : Blob); //reBob Withdraw
           created_at_time = ?time64();  // The time the burn operation was created.
         }
       );
+      log.add(debug_show(Time.now()) # "trying withdraw from " # Error.message(e));
+      return #err("cannot withdraw - failed and refunded " # Error.message(e));
+    };
 
-      let parse = switch(burnResult){
-        case(#Ok(val)) val;
-        case(#Err((err))) return #err(debug_show(err));
-      };
-
-      let result = try{
-        await BOBLedger.icrc1_transfer({
-          to = {
-            owner = caller;
-            subaccount = subaccount;
-          };
-          fee = null;
-          from_subaccount = null;
-          memo = ?Blob.toArray("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94"); //reBob Withdraw
-          created_at_time = ?time64();
-          amount = amount - 10_000;
-        });
-      } catch(e){
-        //put back
-
+    let block = switch(result){
+      case(#Ok(block)) block;
+      case(#Err(err)){
         let remintResult = await* icrc1().mint(caller,
           {
             to= {
               owner = caller;
               subaccount = switch(subaccount){
-                case(null) null;
-                case(?val) ?Blob.fromArray(val);
-              }; // The subaccount from which tokens are burned.
+              case(null) null;
+              case(?val) ?Blob.fromArray(val);
+            }; // The subaccount from which tokens are burned.
             };
             amount = amount;              // The number of tokens to burn.
             memo = ?("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94" : Blob); //reBob Withdraw
             created_at_time = ?time64();  // The time the burn operation was created.
           }
         );
-        log.add(debug_show(Time.now()) # "trying withdraw from " # Error.message(e));
-        return #err("cannot withdraw - failed and refunded " # Error.message(e));
+        log.add(debug_show(Time.now()) # "trying withdraw from " # debug_show(err));
+        return #err("cannot withdraw - failed" # debug_show(err));
       };
-
-      let block = switch(result){
-        case(#Ok(block)) block;
-        case(#Err(err)){
-          let remintResult = await* icrc1().mint(caller,
-            {
-              to= {
-                owner = caller;
-                subaccount = switch(subaccount){
-                case(null) null;
-                case(?val) ?Blob.fromArray(val);
-              }; // The subaccount from which tokens are burned.
-              };
-              amount = amount;              // The number of tokens to burn.
-              memo = ?("\d8\d9\b4\5f\41\5d\5a\c3\be\e5\21\2c\10\f4\bb\6d\07\52\7d\01\17\7e\58\e0\13\03\39\90\00\c5\a8\94" : Blob); //reBob Withdraw
-              created_at_time = ?time64();  // The time the burn operation was created.
-            }
-          );
-          log.add(debug_show(Time.now()) # "trying withdraw from " # debug_show(err));
-          return #err("cannot withdraw - failed" # debug_show(err));
-        };
-      };
+    };
 
 
-      return #ok((parse,block));
+    return #ok((parse,block));
   };
 
   public type Stats = { 
@@ -655,26 +655,26 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
     return ICRC1.Vector.toArray(results);
   };
 
-   public query ({ caller }) func icrc2_allowance(args: ICRC2.AllowanceArgs) : async ICRC2.Allowance {
-      return icrc2().allowance(args.spender, args.account, false);
-    };
+  public query ({ caller }) func icrc2_allowance(args: ICRC2.AllowanceArgs) : async ICRC2.Allowance {
+    return icrc2().allowance(args.spender, args.account, false);
+  };
 
   public shared ({ caller }) func icrc2_approve(args : ICRC2.ApproveArgs) : async ICRC2.ApproveResponse {
-      switch(await*  icrc2().approve_transfers(caller, args, false, null)){
-        case(#trappable(val)) val;
-        case(#awaited(val)) val;
-        case(#err(#trappable(err))) D.trap(err);
-        case(#err(#awaited(err))) D.trap(err);
-      };
+    switch(await*  icrc2().approve_transfers(caller, args, false, null)){
+      case(#trappable(val)) val;
+      case(#awaited(val)) val;
+      case(#err(#trappable(err))) D.trap(err);
+      case(#err(#awaited(err))) D.trap(err);
+    };
   };
 
   public shared ({ caller }) func icrc2_transfer_from(args : ICRC2.TransferFromArgs) : async ICRC2.TransferFromResponse {
-      switch(await* icrc2().transfer_tokens_from(caller, args, null)){
-        case(#trappable(val)) val;
-        case(#awaited(val)) val;
-        case(#err(#trappable(err))) D.trap(err);
-        case(#err(#awaited(err))) D.trap(err);
-      };
+    switch(await* icrc2().transfer_tokens_from(caller, args, null)){
+      case(#trappable(val)) val;
+      case(#awaited(val)) val;
+      case(#err(#trappable(err))) D.trap(err);
+      case(#err(#awaited(err))) D.trap(err);
+    };
   };
 
   public query func icrc3_get_blocks(args: ICRC3.GetBlocksArgs) : async ICRC3.GetBlocksResult{
@@ -698,24 +698,24 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
   };
 
   public shared ({ caller }) func icrc4_transfer_batch(args: ICRC4.TransferBatchArgs) : async ICRC4.TransferBatchResults {
-      switch(await* icrc4().transfer_batch_tokens(caller, args, null, null)){
-        case(#trappable(val)) val;
-        case(#awaited(val)) val;
-        case(#err(#trappable(err))) err;
-        case(#err(#awaited(err))) err;
-      };
+    switch(await* icrc4().transfer_batch_tokens(caller, args, null, null)){
+      case(#trappable(val)) val;
+      case(#awaited(val)) val;
+      case(#err(#trappable(err))) err;
+      case(#err(#awaited(err))) err;
+    };
   };
 
   public shared query func icrc4_balance_of_batch(request : ICRC4.BalanceQueryArgs) : async ICRC4.BalanceQueryResult {
-      icrc4().balance_of_batch(request);
+    icrc4().balance_of_batch(request);
   };
 
   public shared query func icrc4_maximum_update_batch_size() : async ?Nat {
-      ?icrc4().get_state().ledger_info.max_transfers;
+    ?icrc4().get_state().ledger_info.max_transfers;
   };
 
   public shared query func icrc4_maximum_query_batch_size() : async ?Nat {
-      ?icrc4().get_state().ledger_info.max_balances;
+    ?icrc4().get_state().ledger_info.max_balances;
   };
 
   public shared ({ caller }) func admin_update_owner(new_owner : Principal) : async Bool {
@@ -754,29 +754,29 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
 
   }; */
 
-  private stable var _init = false;
-  public shared(msg) func admin_init() : async () {
-    //can only be called once
+  // private stable var _init = false;
+  // public shared(msg) func admin_init() : async () {
+  //   //can only be called once
 
 
-    if(_init == false){
-      //ensure metadata has been registered
-      let test1 = icrc1().metadata();
-      let test2 = icrc2().metadata();
-      let test4 = icrc4().metadata();
-      let test3 = icrc3().stats();
+  //   if(_init == false){
+  //     //ensure metadata has been registered
+  //     let test1 = icrc1().metadata();
+  //     let test2 = icrc2().metadata();
+  //     let test4 = icrc4().metadata();
+  //     let test3 = icrc3().stats();
 
-      //uncomment the following line to register the transfer_listener
-      //icrc1().register_token_transferred_listener("my_namespace", transfer_listener);
+  //     //uncomment the following line to register the transfer_listener
+  //     //icrc1().register_token_transferred_listener("my_namespace", transfer_listener);
 
-      //uncomment the following line to register the transfer_listener
-      //icrc2().register_token_approved_listener("my_namespace", approval_listener);
+  //     //uncomment the following line to register the transfer_listener
+  //     //icrc2().register_token_approved_listener("my_namespace", approval_listener);
 
-      //uncomment the following line to register the transfer_listener
-      //icrc1().register_transfer_from_listener("my_namespace", transfer_from_listener);
-    };
-    _init := true;
-  };
+  //     //uncomment the following line to register the transfer_listener
+  //     //icrc1().register_transfer_from_listener("my_namespace", transfer_from_listener);
+  //   };
+  //   _init := true;
+  // };
 
 
   let log = Buffer.Buffer<Text>(1);
@@ -818,10 +818,9 @@ shared ({ caller = _owner }) actor class Token  (args: ?{
     await selfActor.init();
   });
 
-  system func postupgrade() {
-    
-ignore icrc1().init_metadata();
-    };
+  system func postupgrade() {  
+    ignore icrc1().init_metadata();
+  };
     //re wire up the listener after upgrade
     //uncomment the following line to register the transfer_listener
       //icrc1().register_token_transferred_listener("bobminter", transfer_listener);
@@ -831,6 +830,4 @@ ignore icrc1().init_metadata();
 
       //uncomment the following line to register the transfer_listener
       //icrc1().register_transfer_from_listener("my_namespace", transfer_from_listener);
-  };
-
 };
