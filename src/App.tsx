@@ -267,7 +267,7 @@ function App() {
       console.log({approvalResult}); // I want to see the output of this.
 
       if ("Ok" in approvalResult) {
-        alert("This may take a long time! Your reBob has been authorized for minting. Please click ok and wait for the transaction to complete. A message box should appear after a few seconds.");
+        alert("This may take a long time! Your BOB has been authorized for hashing. Please click ok and wait for the transaction to complete. A message box should appear after a few seconds.");
         let result = await reBobActor.deposit([], amountInE8s );
         if("ok" in result){
           alert("Mint successful! Block: " + result.ok.toString() + ".");
