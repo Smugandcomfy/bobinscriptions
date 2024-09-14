@@ -32,6 +32,9 @@ function App() {
   const [bobLedgerActor, setBobLedgerActor] = useState<icpService | null>(null);
   const [yourPrincipal, setYourPrincipal] = useState<string>("null");
 
+  const bobFee = 1_000_000n
+  const reBobFee = 10_000n
+
   function bigintToFloatString(bigintValue : bigint, decimals = 8) {
     const stringValue = bigintValue.toString();
     // Ensure the string is long enough by padding with leading zeros if necessary
@@ -234,9 +237,9 @@ function App() {
 
     
     const amountToMint = prompt("Enter the amount of Bob to use to hash reBob:");
-    const amountInE8s = BigInt(Number(amountToMint) * 100000000);
+    const amountInE8s = BigInt(Number(amountToMint) * 1_0000_0000); // Bob decimals = 8
 
-    if (amountInE8s + 2000000n > bobLedgerBalance) {
+    if (amountInE8s + (bobFee * 2n) > bobLedgerBalance) {
       alert("You do not have enough Bob.");
       return;
     }
@@ -247,14 +250,14 @@ function App() {
     try {
       // Assuming icpActor and icdvActor are already initialized actors
       const approvalResult  = await bobLedgerActor.icrc2_approve({
-        amount: amountInE8s + 1000000n,
+        amount: amountInE8s + bobFee,
         // Adjust with your canister ID and parameters
         spender: {
           owner: await Principal.fromText(reBobCanisterID),
           subaccount: [],
         },
         memo: [],
-        fee: [1000000n],
+        fee: [bobFee],
         created_at_time: [BigInt(Date.now()) * 1000000n],
         expires_at: [],
         expected_allowance: [],
@@ -295,9 +298,9 @@ function App() {
 
     
     const amountToMint = prompt("Enter the amount of reBob to use to withdraw Bob:");
-    const amountInE8s = BigInt(Number(amountToMint) * 1000000);
+    const amountInE8s = BigInt(Number(amountToMint) * 1_000_000); // reBob decimals = 6
 
-    if (amountInE8s + 20000n > reBobLedgerBalance) {
+    if (amountInE8s + (reBobFee * 2n) > reBobLedgerBalance) {
       alert("You do not have enough reBob.");
       return;
     }
@@ -308,23 +311,26 @@ function App() {
     try {
       // Assuming icpActor and icdvActor are already initialized actors
       const approvalResult  = await reBobActor.icrc2_approve({
-        amount: amountInE8s + 10000n,
+        amount: amountInE8s + reBobFee,
         // Adjust with your canister ID and parameters
         spender: {
           owner: await Principal.fromText(reBobCanisterID),
           subaccount: [],
         },
         memo: [],
-        fee: [10000n],
+        fee: [reBobFee],
         created_at_time: [BigInt(Date.now()) * 1000000n],
         expires_at: [],
         expected_allowance: [],
         from_subaccount: [],
       });
 
+      console.log({approvalResult})
+
       if ("Ok" in approvalResult) {
-        alert("This may take a while! Your ICP has been authorized for minting. Please click ok and wait for the transaction to complete. A message box should appear after a few seconds.");
-        let result = await reBobActor.withdraw([], amountInE8s - 10000n );
+        alert("This may take a while! Your Bob has been authorized for withdrawl. Please click ok and wait for the transaction to complete. A message box should appear after a few seconds.");
+        let result = await reBobActor.withdraw([], amountInE8s - bobFee ); 
+        console.log({result})
         if("ok" in result){
           alert("Withdraw successful! Block: " + result.ok.toString() + ".");
         } else {  
@@ -335,7 +341,7 @@ function App() {
         fetchStats();
       } else {
         console.log("Approval failed", approvalResult); 
-        alert("Withdraw failed." + + approvalResult.Err.toString());
+        alert("Withdraw failed." + approvalResult.Err.toString());
       }
     } catch (error) {
       console.error('Minting failed:', error);
@@ -389,7 +395,7 @@ function App() {
             <h3>Your current $rebob Balance: {bigintToFloatString(reBobLedgerBalance, 6)}</h3>
             <h3>Your current $Bob Balance: {bigintToFloatString(bobLedgerBalance)}</h3>
             <div className="card">
-            {bobLedgerBalance < 40000 ? (
+            {bobLedgerBalance < 40000 ? ( 
               <div>
                 <p>You need more BOB to hash reBob. Send At least .0004 BOB to your principal. Your principal is {yourPrincipal}</p>
               </div>
