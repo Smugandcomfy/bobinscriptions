@@ -1,0 +1,14 @@
+{
+  "canisters": {
+    "indexer": {
+      "main": "src/indexer.mo",
+      "type": "motoko"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "mops sources"
+    }
+  },
+  "dfx": "0.15.2"
+}
