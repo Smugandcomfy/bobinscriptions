@@ -1,9 +1,7 @@
-#REHASHER & exohashing
+reHASHER framework to inscribe using bob icrc2 Approve method
 
 
-fakebob is for testnet only
-
-
+REHASHER DEPLOYMENT FLOW:
 1 canister on bob subnet for reBOB
 
 dfx canister --network ic create --subnet bkfrj-6k62g-dycql-7h53p-atvkj-zg4to-gaogh-netha-ptybj-ntsgw-rqe
